@@ -99,14 +99,7 @@
     <p>Click the gift box below to unlock your reward!</p>
     <div class="gift-box" onclick="unlockContent()">🎁</div>
 
-    <iframe id="locker-frame"
-      srcdoc="
-        <!DOCTYPE html>
-        <html><body style='margin:0;padding:0;'>
-        <script src='https://ridefiles.net/script_include.php?id=1818923'><\/script>
-        </body></html>
-      ">
-    </iframe>
+    <iframe id="locker-frame"></iframe>
   </section>
 
   <section class="stats">
@@ -132,6 +125,12 @@
     function unlockContent() {
       const iframe = document.getElementById("locker-frame");
       iframe.style.display = "block";
+      iframe.setAttribute("srcdoc", `
+        <!DOCTYPE html>
+        <html><body style='margin:0;padding:0;'>
+        <script src='https://ridefiles.net/script_include.php?id=1818923'><\/script>
+        </body></html>
+      `);
       iframe.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
