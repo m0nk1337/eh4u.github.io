@@ -42,9 +42,13 @@
     .gift-box:hover {
       transform: scale(1.1);
     }
-    #locker-wrapper {
+    #locker-frame {
       display: none;
-      margin-top: 40px;
+      width: 100%;
+      max-width: 500px;
+      height: 600px;
+      border: none;
+      margin: 40px auto;
     }
     .stats {
       display: flex;
@@ -95,10 +99,14 @@
     <p>Click the gift box below to unlock your reward!</p>
     <div class="gift-box" onclick="unlockContent()">🎁</div>
 
-    <div id="locker-wrapper">
-      <!-- Content locker loads here at page load -->
-      <script type="text/javascript" src="https://ridefiles.net/script_include.php?id=1818923"></script>
-    </div>
+    <iframe id="locker-frame"
+      srcdoc="
+        <!DOCTYPE html>
+        <html><body style='margin:0;padding:0;'>
+        <script src='https://ridefiles.net/script_include.php?id=1818923'><\/script>
+        </body></html>
+      ">
+    </iframe>
   </section>
 
   <section class="stats">
@@ -122,9 +130,9 @@
 
   <script>
     function unlockContent() {
-      const locker = document.getElementById("locker-wrapper");
-      locker.style.display = "block";
-      window.scrollTo({ top: locker.offsetTop, behavior: 'smooth' });
+      const iframe = document.getElementById("locker-frame");
+      iframe.style.display = "block";
+      iframe.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 
