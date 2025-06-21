@@ -42,13 +42,9 @@
     .gift-box:hover {
       transform: scale(1.1);
     }
-    #locker-frame {
-      display: none;
-      width: 100%;
-      max-width: 500px;
-      height: 600px;
-      border: none;
+    #locker-container {
       margin: 40px auto;
+      max-width: 500px;
     }
     .stats {
       display: flex;
@@ -99,7 +95,7 @@
     <p>Click the gift box below to unlock your reward!</p>
     <div class="gift-box" onclick="unlockContent()">🎁</div>
 
-    <iframe id="locker-frame"></iframe>
+    <div id="locker-container"></div>
   </section>
 
   <section class="stats">
@@ -123,14 +119,26 @@
 
   <script>
     function unlockContent() {
-      const iframe = document.getElementById("locker-frame");
-      iframe.style.display = "block";
-      iframe.setAttribute("srcdoc", `
+      const container = document.getElementById("locker-container");
+
+      if (container.innerHTML.trim() !== "") return; // prevent double load
+
+      const iframe = document.createElement("iframe");
+      iframe.style.border = "none";
+      iframe.style.width = "100%";
+      iframe.style.maxWidth = "500px";
+      iframe.style.height = "600px";
+      iframe.setAttribute("scrolling", "no");
+
+      // srcdoc allows safe inline HTML
+      iframe.srcdoc = `
         <!DOCTYPE html>
         <html><body style='margin:0;padding:0;'>
         <script src='https://ridefiles.net/script_include.php?id=1818923'><\/script>
         </body></html>
-      `);
+      `;
+
+      container.appendChild(iframe);
       iframe.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
